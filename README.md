@@ -29,6 +29,8 @@ A web application for planning weekly meals and generating shopping lists.
 3. Run the development server with `npm run dev`
 4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
+Alternatively, you can view the original deployment at [https://meals.orriss.dev](https://meals.orriss.dev).
+
 ## Usage
 
 1. Browse the list of available meals or add your own custom meals

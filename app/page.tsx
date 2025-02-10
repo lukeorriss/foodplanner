@@ -176,14 +176,14 @@ export default function MealPlanner() {
             <CardHeader>
               <CardTitle>All Meals</CardTitle>
             </CardHeader>
-            <CardContent>
-              <ScrollArea className="h-[300px]">
+            <CardContent className="w-full">
+              <ScrollArea className="h-[300px] w-full">
                 {allMeals.map((meal) => (
-                  <div key={meal.id} className="flex justify-between items-center mb-2">
-                    <Button variant="ghost" onClick={() => openMealDetails(meal)} className={meal.isUserAdded ? "text-blue-400" : ""}>
+                  <div key={meal.id} className="flex justify-between items-center mb-2 w-full">
+                    <Button variant="ghost" size="sm" onClick={() => openMealDetails(meal)} className={meal.isUserAdded ? "text-blue-400" : "" + " whitespace-normal text-left"}>
                       {meal.name}
                       {meal.diet?.map((dietType) => (
-                        <span key={dietType} className="" title={dietType}>
+                        <span key={dietType} title={dietType}>
                           {dietIcons[dietType as keyof typeof dietIcons]}
                         </span>
                       ))}
@@ -195,7 +195,7 @@ export default function MealPlanner() {
                 ))}
               </ScrollArea>
               <div className="mt-4 space-y-2">
-                <div className="flex items-center justify-between space-x-2">
+                <div className="flex items-center justify-between flex-wrap gap-2">
                   <div className="flex items-center space-x-2">
                     <Input id="randomCount" type="number" value={randomMealsCount} onChange={(e) => setRandomMealsCount(Number(e.target.value))} min={1} max={allMeals.length} className="w-20" />
                     <Button onClick={randomizeMeals}>Randomise Meals</Button>
@@ -214,7 +214,7 @@ export default function MealPlanner() {
               <ScrollArea className="h-[300px]">
                 {selectedMeals.map((meal) => (
                   <div key={meal.id} className="flex justify-between items-center mb-2">
-                    <Button variant="ghost" onClick={() => openMealDetails(meal)} className={meal.isUserAdded ? "text-blue-400" : ""}>
+                    <Button variant="ghost" onClick={() => openMealDetails(meal)} className={meal.isUserAdded ? "text-blue-400" : "" + " whitespace-normal text-left"}>
                       {meal.name}
                       {meal.diet?.map((dietType) => (
                         <span key={dietType} className="" title={dietType}>

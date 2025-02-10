@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Weekly Meal Planner
+
+A web application for planning weekly meals and generating shopping lists.
+
+## Features
+
+- Browse and select from a collection of pre-defined meals
+- Add custom meals with ingredients and dietary preferences
+- Randomly select meals for variety
+- Generate a weekly meal plan
+- View consolidated shopping list of required ingredients
+- Save meal plans and custom meals to local storage
+- Filter meals by dietary preferences (vegan, vegetarian, etc)
+- Mobile responsive design
+
+## Technology Stack
+
+- Next.js 13 with App Router
+- React
+- TypeScript
+- Tailwind CSS
+- shadcn/ui Components
+- Local Storage for data persistence
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository
+2. Install dependencies with `npm install`
+3. Run the development server with `npm run dev`
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Usage
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Browse the list of available meals or add your own custom meals
+2. Select meals you want to include in your weekly plan
+3. Click "Plan Week" to automatically assign meals to days
+4. View your weekly plan and consolidated shopping list
+5. Use the "Reset" button to clear all data and start fresh
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Contributing
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-## Learn More
+## License
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License - see the LICENSE file for details.

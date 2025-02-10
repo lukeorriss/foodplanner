@@ -195,7 +195,7 @@ export const staticMeals: Meal[] = [
       "1/2 Small Pack of Parsley",
     ],
     servings: 2,
-    link: "www.bbcgoodfood.com/recipes/beef-stroganoff",
+    link: "https://www.bbcgoodfood.com/recipes/beef-stroganoff",
     diet: ["premium"],
   },
 ];

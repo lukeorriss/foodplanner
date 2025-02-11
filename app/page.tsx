@@ -238,20 +238,6 @@ export default function MealPlanner() {
             <CardHeader>
               <div className="flex justify-between items-center">
                 <CardTitle>Week Plan</CardTitle>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => {
-                    const text = Object.values(weekPlan)
-                      .map((meal) => (meal ? meal.name : "Not planned"))
-                      .join("\n");
-                    navigator.clipboard.writeText(text);
-                    toast.success("Week plan copied to clipboard!");
-                  }}
-                >
-                  <ClipboardIcon className="h-4 w-4 mr-2" />
-                  Copy to Clipboard
-                </Button>
               </div>
             </CardHeader>
             <CardContent>
@@ -269,6 +255,34 @@ export default function MealPlanner() {
                   </div>
                 ))}
               </ScrollArea>
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    const text = DAYS_OF_WEEK.map((day) => `${day}\t${weekPlan[day] ? weekPlan[day].name : "Not planned"}`).join("\n");
+                    navigator.clipboard.writeText(text);
+                    toast.success("Week plan copied to clipboard!");
+                  }}
+                >
+                  <ClipboardIcon className="h-4 w-4" />
+                  Copy Days & Meals
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    const text = Object.values(weekPlan)
+                      .map((meal) => (meal ? meal.name : "Not planned"))
+                      .join("\n");
+                    navigator.clipboard.writeText(text);
+                    toast.success("Week plan copied to clipboard!");
+                  }}
+                >
+                  <ClipboardIcon className="h-4 w-4" />
+                  Copy Meals
+                </Button>
+              </div>
             </CardContent>
           </Card>
 

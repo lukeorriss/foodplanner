@@ -150,6 +150,7 @@ export const staticMeals: Meal[] = [
       "125ml Boiled Water",
     ],
     diet: ["spicy"],
+    servings: 2,
     link: "https://www.hellofresh.co.uk/recipes/thai-style-peanut-chicken-noodles-63332b26607fcf1c87822839",
   },
   {

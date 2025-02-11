@@ -242,7 +242,9 @@ export default function MealPlanner() {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    const text = DAYS_OF_WEEK.map((day) => `${day}\t${weekPlan[day] ? weekPlan[day].name : "Not planned"}`).join("\n");
+                    const text = Object.values(weekPlan)
+                      .map((meal) => (meal ? meal.name : "Not planned"))
+                      .join("\n");
                     navigator.clipboard.writeText(text);
                     toast.success("Week plan copied to clipboard!");
                   }}

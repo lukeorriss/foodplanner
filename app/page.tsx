@@ -11,7 +11,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Input } from "@/components/ui/input";
 import Script from "next/script";
-import { Vegan, Leaf, CircleDollarSign } from "lucide-react";
+import { Vegan, Leaf, CircleDollarSign, ClipboardIcon } from "lucide-react";
 import { PiPepperBold } from "react-icons/pi";
 
 const DAYS_OF_WEEK = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -236,7 +236,21 @@ export default function MealPlanner() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Week Plan</CardTitle>
+              <div className="flex justify-between items-center">
+                <CardTitle>Week Plan</CardTitle>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    const text = DAYS_OF_WEEK.map((day) => `${day}\t${weekPlan[day] ? weekPlan[day].name : "Not planned"}`).join("\n");
+                    navigator.clipboard.writeText(text);
+                    toast.success("Week plan copied to clipboard!");
+                  }}
+                >
+                  <ClipboardIcon className="h-4 w-4 mr-2" />
+                  Copy to Clipboard
+                </Button>
+              </div>
             </CardHeader>
             <CardContent>
               <ScrollArea className="h-[300px]">

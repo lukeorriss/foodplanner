@@ -2,6 +2,8 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import type { Meal } from "../data/staticMeals";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { capitalise } from "@/lib/utils";
+import { dietIcons } from "@/data/diet";
 
 interface MealDetailsModalProps {
   meal: Meal | null;
@@ -18,6 +20,13 @@ export function MealDetailsModal({ meal, isOpen, onClose }: MealDetailsModalProp
         <DialogHeader>
           <DialogTitle className={meal.isUserAdded ? "text-blue-400" : ""}>{meal.name}</DialogTitle>
           <DialogDescription>Servings: {meal.servings || "Not specified"}</DialogDescription>
+          <div className="flex flex-wrap gap-2">
+            {meal.diet?.map((dietType) => (
+              <p key={dietType} title={capitalise(dietType)} className={`flex items-center gap-2 text-sm border border-gray-200 rounded-md px-2 py-1 ${dietIcons[dietType].color}`}>
+                {dietIcons[dietType].icon} {capitalise(dietIcons[dietType].text)}
+              </p>
+            ))}
+          </div>
         </DialogHeader>
         <div className="mt-4">
           <h3 className="font-semibold mb-2">Ingredients:</h3>

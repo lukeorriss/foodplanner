@@ -11,17 +11,13 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Input } from "@/components/ui/input";
 import Script from "next/script";
-import { Vegan, Leaf, CircleDollarSign, ClipboardIcon } from "lucide-react";
-import { PiPepperBold } from "react-icons/pi";
+import { dietIcons } from "@/data/diet";
+import { ClipboardIcon } from "lucide-react";
+import { capitalise } from "@/lib/utils";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
 const DAYS_OF_WEEK = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-
-const dietIcons = {
-  vegan: <Vegan className="w-4 h-4 text-green-800" />,
-  vegetarian: <Leaf className="w-4 h-4 text-green-800" />,
-  premium: <CircleDollarSign className="w-4 h-4 text-yellow-800" />,
-  spicy: <PiPepperBold className="w-4 h-4 text-red-800" />,
-};
 
 export default function MealPlanner() {
   const [userMeals, setUserMeals] = useState<Meal[]>([]);
@@ -154,7 +150,7 @@ export default function MealPlanner() {
           "@context": "https://schema.org",
           "@type": "WebApplication",
           name: "Weekly Meal Planner",
-          url: "https://foodplanner.orriss.dev",
+          url: "https://meals.orriss.dev",
           description: "An interactive meal planning tool to organize your weekly meals and generate shopping lists.",
           applicationCategory: "LifestyleApplication",
           operatingSystem: "Any",
@@ -168,9 +164,20 @@ export default function MealPlanner() {
       <div className="container mx-auto p-4">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-2xl font-bold">Weekly Meal Planner</h1>
-          <Button onClick={resetToInitialState}>Reset</Button>
+          <div className="flex gap-2">
+            <Button variant="outline" onClick={clearLocalStorage}>
+              Clear Local Storage
+            </Button>
+            <Button onClick={resetToInitialState}>Reset</Button>
+          </div>
         </div>
         <p className="mb-4 text-sm text-gray-600">Note: All default meals are representative of two servings.</p>
+        <div className="flex items-center space-x-2 mb-4">
+          <div className="flex items-center space-x-2">
+            <Switch id="airplane-mode" className="data-[state=checked]:bg-green-500" />
+            <Label htmlFor="airplane-mode">Airplane Mode</Label>
+          </div>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Card>
             <CardHeader>
@@ -183,8 +190,8 @@ export default function MealPlanner() {
                     <Button variant="ghost" size="sm" onClick={() => openMealDetails(meal)} className={meal.isUserAdded ? "text-blue-400" : "" + " whitespace-normal text-left"}>
                       {meal.name}
                       {meal.diet?.map((dietType) => (
-                        <span key={dietType} title={dietType}>
-                          {dietIcons[dietType as keyof typeof dietIcons]}
+                        <span key={dietType} className={`${dietIcons[dietType].color}`} title={capitalise(dietType)}>
+                          {dietIcons[dietType].icon}
                         </span>
                       ))}
                     </Button>
@@ -217,8 +224,8 @@ export default function MealPlanner() {
                     <Button variant="ghost" onClick={() => openMealDetails(meal)} className={meal.isUserAdded ? "text-blue-400" : "" + " whitespace-normal text-left"}>
                       {meal.name}
                       {meal.diet?.map((dietType) => (
-                        <span key={dietType} className="" title={dietType}>
-                          {dietIcons[dietType as keyof typeof dietIcons]}
+                        <span key={dietType} className={`${dietIcons[dietType].color}`} title={dietType}>
+                          {dietIcons[dietType].icon}
                         </span>
                       ))}
                     </Button>
@@ -305,12 +312,6 @@ export default function MealPlanner() {
               </ScrollArea>
             </CardContent>
           </Card>
-        </div>
-
-        <div className="mt-4">
-          <Button variant="outline" onClick={clearLocalStorage}>
-            Clear Local Storage
-          </Button>
         </div>
       </div>
       <MealDetailsModal meal={currentMeal} isOpen={isMealDetailsOpen} onClose={() => setIsMealDetailsOpen(false)} />

@@ -13,9 +13,6 @@ import { Input } from "@/components/ui/input";
 import Script from "next/script";
 import { dietIcons } from "@/data/diet";
 import { ClipboardIcon } from "lucide-react";
-import { capitalise } from "@/lib/utils";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
 
 const DAYS_OF_WEEK = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
@@ -200,8 +197,6 @@ export default function MealPlanner() {
                       <Button variant="ghost" size="sm" onClick={() => openMealDetails(meal)} className={meal.isUserAdded ? "text-blue-400" : "" + " whitespace-normal text-left"}>
                         {meal.name}
                         {meal.diet?.map((dietType) => {
-                          const textColor = `text-${dietIcons[dietType].color}`;
-                          const borderColor = `border-${dietIcons[dietType].color}`;
                           return (
                             <span key={dietType} title={dietIcons[dietType].text}>
                               {dietIcons[dietType].icon}

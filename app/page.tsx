@@ -172,18 +172,21 @@ export default function MealPlanner() {
           </div>
         </div>
         <p className="mb-4 text-sm text-gray-600">Note: All default meals are representative of two servings.</p>
-        <div className="flex items-center space-x-2 mb-4">
+        {/* <div className="flex items-center space-x-2 mb-4">
           {Object.values(dietIcons).map((diet) => {
+            const bgColor = `bg-${diet.color}`;
+            const textColor = `text-${diet.color}`;
+            const borderColor = `border-${diet.color}`;
             return (
-              <div key={diet.text} className="flex items-center space-x-2 hover:cursor-pointer">
-                <Switch id={diet.text} className={`data-[state=checked]:bg-${diet.color}]`} />
-                <Label htmlFor={diet.text} className={`text-${diet.color} text-sm`}>
+              <div key={diet.text} className="flex items-center space-x-2 hover:cursor-pointer ">
+                <Switch id={diet.text} className={`data-[state=checked]:${bgColor} data-[state=checked]:${borderColor}`} />
+                <Label htmlFor={diet.text} className={`${textColor} text-sm`}>
                   {diet.text}
                 </Label>
               </div>
             );
           })}
-        </div>
+        </div> */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Card>
             <CardHeader>
@@ -191,21 +194,27 @@ export default function MealPlanner() {
             </CardHeader>
             <CardContent className="w-full">
               <ScrollArea className="h-[300px] w-full">
-                {allMeals.map((meal) => (
-                  <div key={meal.id} className="flex justify-between items-center mb-2 w-full">
-                    <Button variant="ghost" size="sm" onClick={() => openMealDetails(meal)} className={meal.isUserAdded ? "text-blue-400" : "" + " whitespace-normal text-left"}>
-                      {meal.name}
-                      {meal.diet?.map((dietType) => (
-                        <span key={dietType} className={`text-${dietIcons[dietType].color}`} title={dietIcons[dietType].text}>
-                          {dietIcons[dietType].icon}
-                        </span>
-                      ))}
-                    </Button>
-                    <Button onClick={() => addMeal(meal)} disabled={selectedMeals.some((m) => m.id === meal.id)} className={meal.isUserAdded ? "bg-blue-400 hover:bg-blue-500" : ""}>
-                      Add
-                    </Button>
-                  </div>
-                ))}
+                {allMeals.map((meal) => {
+                  return (
+                    <div key={meal.id} className="flex justify-between items-center mb-2 w-full">
+                      <Button variant="ghost" size="sm" onClick={() => openMealDetails(meal)} className={meal.isUserAdded ? "text-blue-400" : "" + " whitespace-normal text-left"}>
+                        {meal.name}
+                        {meal.diet?.map((dietType) => {
+                          const textColor = `text-${dietIcons[dietType].color}`;
+                          const borderColor = `border-${dietIcons[dietType].color}`;
+                          return (
+                            <span key={dietType} title={dietIcons[dietType].text}>
+                              {dietIcons[dietType].icon}
+                            </span>
+                          );
+                        })}
+                      </Button>
+                      <Button onClick={() => addMeal(meal)} disabled={selectedMeals.some((m) => m.id === meal.id)} className={meal.isUserAdded ? "bg-blue-400 hover:bg-blue-500" : ""}>
+                        Add
+                      </Button>
+                    </div>
+                  );
+                })}
               </ScrollArea>
               <div className="mt-4 space-y-2">
                 <div className="flex items-center justify-between flex-wrap gap-2">
@@ -230,7 +239,7 @@ export default function MealPlanner() {
                     <Button variant="ghost" onClick={() => openMealDetails(meal)} className={meal.isUserAdded ? "text-blue-400" : "" + " whitespace-normal text-left"}>
                       {meal.name}
                       {meal.diet?.map((dietType) => (
-                        <span key={dietType} className={`text-${dietIcons[dietType].color}`} title={dietIcons[dietType].text}>
+                        <span key={dietType} title={dietIcons[dietType].text}>
                           {dietIcons[dietType].icon}
                         </span>
                       ))}

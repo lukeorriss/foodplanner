@@ -9,22 +9,22 @@ interface DietIcon {
 
 export const dietIcons: Record<string, DietIcon> = {
   vegan: {
-    icon: <Vegan className="w-4 h-4" />,
+    icon: <Vegan className="w-4 h-4 text-green-800" />,
     color: "green-800",
     text: "Vegan",
   },
   vegetarian: {
-    icon: <Leaf className="w-4 h-4" />,
+    icon: <Leaf className="w-4 h-4 text-green-800" />,
     color: "green-800",
     text: "Vegetarian",
   },
   premium: {
-    icon: <CircleDollarSign className="w-4 h-4" />,
+    icon: <CircleDollarSign className="w-4 h-4 text-yellow-800" />,
     color: "yellow-800",
     text: "Premium",
   },
   spicy: {
-    icon: <PiPepperBold className="w-4 h-4" />,
+    icon: <PiPepperBold className="w-4 h-4 text-red-800" />,
     color: "red-800",
     text: "Spicy",
   },

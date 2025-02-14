@@ -173,10 +173,16 @@ export default function MealPlanner() {
         </div>
         <p className="mb-4 text-sm text-gray-600">Note: All default meals are representative of two servings.</p>
         <div className="flex items-center space-x-2 mb-4">
-          <div className="flex items-center space-x-2">
-            <Switch id="airplane-mode" className="data-[state=checked]:bg-green-500" />
-            <Label htmlFor="airplane-mode">Airplane Mode</Label>
-          </div>
+          {Object.values(dietIcons).map((diet) => {
+            return (
+              <div key={diet.text} className="flex items-center space-x-2 hover:cursor-pointer">
+                <Switch id={diet.text} className={`data-[state=checked]:bg-${diet.color}]`} />
+                <Label htmlFor={diet.text} className={`text-${diet.color} text-sm`}>
+                  {diet.text}
+                </Label>
+              </div>
+            );
+          })}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Card>
@@ -190,7 +196,7 @@ export default function MealPlanner() {
                     <Button variant="ghost" size="sm" onClick={() => openMealDetails(meal)} className={meal.isUserAdded ? "text-blue-400" : "" + " whitespace-normal text-left"}>
                       {meal.name}
                       {meal.diet?.map((dietType) => (
-                        <span key={dietType} className={`${dietIcons[dietType].color}`} title={capitalise(dietType)}>
+                        <span key={dietType} className={`text-${dietIcons[dietType].color}`} title={dietIcons[dietType].text}>
                           {dietIcons[dietType].icon}
                         </span>
                       ))}
@@ -224,7 +230,7 @@ export default function MealPlanner() {
                     <Button variant="ghost" onClick={() => openMealDetails(meal)} className={meal.isUserAdded ? "text-blue-400" : "" + " whitespace-normal text-left"}>
                       {meal.name}
                       {meal.diet?.map((dietType) => (
-                        <span key={dietType} className={`${dietIcons[dietType].color}`} title={dietType}>
+                        <span key={dietType} className={`text-${dietIcons[dietType].color}`} title={dietIcons[dietType].text}>
                           {dietIcons[dietType].icon}
                         </span>
                       ))}

@@ -22,7 +22,11 @@ export function MealDetailsModal({ meal, isOpen, onClose }: MealDetailsModalProp
           <DialogDescription>Servings: {meal.servings || "Not specified"}</DialogDescription>
           <div className="flex flex-wrap gap-2">
             {meal.diet?.map((dietType) => (
-              <p key={dietType} title={capitalise(dietType)} className={`flex items-center gap-2 text-sm border border-gray-200 rounded-md px-2 py-1 ${dietIcons[dietType].color}`}>
+              <p
+                key={dietType}
+                title={capitalise(dietType)}
+                className={`flex items-center gap-2 text-sm border rounded-md px-2 py-1 text-${dietIcons[dietType].color} border-${dietIcons[dietType].color}`}
+              >
                 {dietIcons[dietType].icon} {capitalise(dietIcons[dietType].text)}
               </p>
             ))}

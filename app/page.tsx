@@ -317,13 +317,14 @@ export default function MealPlanner() {
                         <li key={index} className="flex items-center gap-2">
                           <input
                             type="checkbox"
+                            id={`${mealName}-${index}`}
                             onChange={(e) => {
                               const target = e.target as HTMLInputElement;
                               target.nextElementSibling?.classList.toggle("line-through");
                               target.nextElementSibling?.classList.toggle("opacity-50");
                             }}
                           />
-                          <span>{ingredient}</span>
+                          <label htmlFor={`${mealName}-${index}`}>{ingredient}</label>
                         </li>
                       ))}
                     </ul>

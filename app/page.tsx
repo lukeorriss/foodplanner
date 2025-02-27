@@ -159,7 +159,7 @@ export default function MealPlanner() {
         })}
       </Script>
       <div className="container mx-auto p-4">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center mb-4 md:flex-row flex-col gap-2">
           <h1 className="text-2xl font-bold">Weekly Meal Planner</h1>
           <div className="flex gap-2">
             <Button variant="outline" onClick={clearLocalStorage}>
@@ -314,7 +314,17 @@ export default function MealPlanner() {
                     <h3 className="font-semibold">{mealName}</h3>
                     <ul>
                       {ingredients.map((ingredient, index) => (
-                        <li key={index}>{ingredient}</li>
+                        <li key={index} className="flex items-center gap-2">
+                          <input
+                            type="checkbox"
+                            onChange={(e) => {
+                              const target = e.target as HTMLInputElement;
+                              target.nextElementSibling?.classList.toggle("line-through");
+                              target.nextElementSibling?.classList.toggle("opacity-50");
+                            }}
+                          />
+                          <span>{ingredient}</span>
+                        </li>
                       ))}
                     </ul>
                   </div>

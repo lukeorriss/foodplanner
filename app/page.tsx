@@ -116,7 +116,6 @@ export default function MealPlanner() {
     setSelectedMeals([]);
     setWeekPlan({});
     setRandomMealsCount(7);
-    clearLocalStorage();
     toast.info("Application reset to initial state.");
   };
 

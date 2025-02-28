@@ -112,7 +112,6 @@ export default function MealPlanner() {
   };
 
   const resetToInitialState = () => {
-    setUserMeals([]);
     setSelectedMeals([]);
     setWeekPlan({});
     setRandomMealsCount(7);
